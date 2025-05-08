@@ -11,6 +11,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import { useMainLayout } from "../../../../context/MainLayoutContext";
+import ProfileButton from "./ProfileButton";
 
 interface HeaderProps {
   onDrawerToggle: () => void;
@@ -44,9 +45,7 @@ export default function Header(props: HeaderProps) {
               </Tooltip>
             </Grid>
             <Grid item>
-              <IconButton color="inherit" sx={{ p: 0.5 }}>
-                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
-              </IconButton>
+              <ProfileButton />
             </Grid>
           </Grid>
         </Toolbar>
