@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useRoutes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import SignIn from "../pages/authentication/sign-in/SignIn";
 
 import Settings from "../pages/organization/Settings/Settings";
