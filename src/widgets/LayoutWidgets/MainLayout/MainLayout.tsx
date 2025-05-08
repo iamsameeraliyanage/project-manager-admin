@@ -163,7 +163,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <ThemeProvider theme={theme}>
       <MainLayoutProvider>
-        <Box sx={{ display: "flex", minHeight: "100vh" }}>
+        <Box sx={{ display: "flex", height: "100vh", overflow: "auto" }}>
           <CssBaseline />
           <Box
             component="nav"
@@ -186,7 +186,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
             <Header onDrawerToggle={handleDrawerToggle} />
             <Box
               component="main"
-              sx={{ flex: 1, py: 6, px: 4, bgcolor: "#eaeff1" }}
+              sx={{ flex: 1, bgcolor: "#eaeff1", overflow: "auto" }}
             >
               {children}
             </Box>

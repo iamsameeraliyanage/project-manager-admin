@@ -11,12 +11,14 @@ export default function Organization() {
   }, []);
 
   return (
-    <Container>
-      <Card variant="outlined">
-        <Stack minHeight={"50vh"} p={3}>
-          Organization goes here
-        </Stack>
-      </Card>
-    </Container>
+    <Stack py={3}>
+      <Container>
+        <Card variant="outlined">
+          <Stack minHeight={"100vh"} p={3}>
+            Organization goes here
+          </Stack>
+        </Card>
+      </Container>
+    </Stack>
   );
 }
