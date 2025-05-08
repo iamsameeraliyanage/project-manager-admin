@@ -14,10 +14,10 @@ export const AppRoutes = () =>
       path: "/",
       element: <AuthnticatedRoute />,
       children: [
-        { path: "", element: <Organization /> },
-        { path: "accounts", element: <Accounts /> },
-        { path: "settings", element: <Settings /> },
-        { path: "profile", element: <Profile /> },
+        { path: "/", element: <Organization /> },
+        { path: "/accounts", element: <Accounts /> },
+        { path: "/settings", element: <Settings /> },
+        { path: "/profile", element: <Profile /> },
       ],
     },
   ]);

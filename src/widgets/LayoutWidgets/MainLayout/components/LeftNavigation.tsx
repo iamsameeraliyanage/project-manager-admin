@@ -11,6 +11,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import DnsRoundedIcon from "@mui/icons-material/DnsRounded";
 import TimerIcon from "@mui/icons-material/Timer";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { NavLink, useLocation } from "react-router-dom";
 
 const categories = [
   {
@@ -19,12 +20,12 @@ const categories = [
       {
         id: "Organization",
         icon: <PeopleIcon />,
-        route: "",
+        route: "/",
       },
       {
         id: "Accounts",
         icon: <DnsRoundedIcon />,
-        route: "accounts",
+        route: "/accounts",
       },
     ],
   },
@@ -34,12 +35,12 @@ const categories = [
       {
         id: "Settings",
         icon: <SettingsIcon />,
-        route: "settings",
+        route: "/settings",
       },
       {
         id: "Profile",
         icon: <TimerIcon />,
-        route: "profile",
+        route: "/profile",
       },
     ],
   },
@@ -62,7 +63,7 @@ const itemCategory = {
 
 export default function LeftNavigation(props: DrawerProps) {
   const { ...other } = props;
-
+  const location = useLocation();
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
@@ -82,14 +83,25 @@ export default function LeftNavigation(props: DrawerProps) {
             <ListItem sx={{ py: 2, px: 3 }}>
               <ListItemText sx={{ color: "#fff" }}>{id}</ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon }) => (
-              <ListItem disablePadding key={childId}>
-                <ListItemButton selected={false} sx={item}>
-                  <ListItemIcon>{icon}</ListItemIcon>
-                  <ListItemText>{childId}</ListItemText>
-                </ListItemButton>
-              </ListItem>
-            ))}
+            {children.map(({ id: childId, icon, route }) => {
+              const isSelected =
+                route === "/"
+                  ? location.pathname === "/"
+                  : location.pathname.startsWith(route);
+              return (
+                <ListItem disablePadding key={childId}>
+                  <ListItemButton
+                    sx={item}
+                    component={NavLink}
+                    to={route}
+                    selected={isSelected}
+                  >
+                    <ListItemIcon>{icon}</ListItemIcon>
+                    <ListItemText>{childId}</ListItemText>
+                  </ListItemButton>
+                </ListItem>
+              );
+            })}
             <Divider sx={{ mt: 2 }} />
           </Box>
         ))}
