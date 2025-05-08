@@ -6,10 +6,17 @@ import Settings from "../pages/organization/Settings";
 import Accounts from "../pages/organization/Accounts";
 import Profile from "../pages/organization/Profile";
 import Organization from "../pages/organization/Organization";
+import MainLayout from "../widgets/LayoutWidgets/MainLayout/MainLayout";
 
 const ProtectedRoute = () => {
   const { isAuthenticated } = useAuth();
-  return isAuthenticated ? <Outlet /> : <Navigate to="/signin" replace />;
+  return isAuthenticated ? (
+    <MainLayout>
+      <Outlet />
+    </MainLayout>
+  ) : (
+    <Navigate to="/signin" replace />
+  );
 };
 
 export const AppRoutes = () =>
