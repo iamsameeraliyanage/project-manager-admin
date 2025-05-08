@@ -5,6 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import LeftNavigation from "./components/LeftNavigation";
 import Header from "./components/Header";
+import { MainLayoutProvider } from "../../../context/MainLayoutContext";
 
 let theme = createTheme({
   palette: {
@@ -161,35 +162,37 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: "flex", minHeight: "100vh" }}>
-        <CssBaseline />
-        <Box
-          component="nav"
-          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        >
-          {isSmUp ? null : (
+      <MainLayoutProvider>
+        <Box sx={{ display: "flex", minHeight: "100vh" }}>
+          <CssBaseline />
+          <Box
+            component="nav"
+            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+          >
+            {isSmUp ? null : (
+              <LeftNavigation
+                PaperProps={{ style: { width: drawerWidth } }}
+                variant="temporary"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+              />
+            )}
             <LeftNavigation
               PaperProps={{ style: { width: drawerWidth } }}
-              variant="temporary"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
+              sx={{ display: { sm: "block", xs: "none" } }}
             />
-          )}
-          <LeftNavigation
-            PaperProps={{ style: { width: drawerWidth } }}
-            sx={{ display: { sm: "block", xs: "none" } }}
-          />
-        </Box>
-        <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
-          <Header onDrawerToggle={handleDrawerToggle} />
-          <Box
-            component="main"
-            sx={{ flex: 1, py: 6, px: 4, bgcolor: "#eaeff1" }}
-          >
-            {children}
+          </Box>
+          <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
+            <Header onDrawerToggle={handleDrawerToggle} />
+            <Box
+              component="main"
+              sx={{ flex: 1, py: 6, px: 4, bgcolor: "#eaeff1" }}
+            >
+              {children}
+            </Box>
           </Box>
         </Box>
-      </Box>
+      </MainLayoutProvider>
     </ThemeProvider>
   );
 };

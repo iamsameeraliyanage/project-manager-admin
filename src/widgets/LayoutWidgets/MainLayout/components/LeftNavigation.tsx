@@ -9,39 +9,38 @@ import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
 import PeopleIcon from "@mui/icons-material/People";
 import DnsRoundedIcon from "@mui/icons-material/DnsRounded";
-import PermMediaOutlinedIcon from "@mui/icons-material/PhotoSizeSelectActual";
-import PublicIcon from "@mui/icons-material/Public";
-import SettingsEthernetIcon from "@mui/icons-material/SettingsEthernet";
-import SettingsInputComponentIcon from "@mui/icons-material/SettingsInputComponent";
 import TimerIcon from "@mui/icons-material/Timer";
 import SettingsIcon from "@mui/icons-material/Settings";
-import PhonelinkSetupIcon from "@mui/icons-material/PhonelinkSetup";
 
 const categories = [
   {
-    id: "Build",
+    id: "Management",
     children: [
       {
-        id: "Authentication",
+        id: "Organization",
         icon: <PeopleIcon />,
-        active: true,
+        route: "",
       },
-      { id: "Database", icon: <DnsRoundedIcon /> },
-      { id: "Storage", icon: <PermMediaOutlinedIcon /> },
-      { id: "Hosting", icon: <PublicIcon /> },
-      { id: "Functions", icon: <SettingsEthernetIcon /> },
       {
-        id: "Machine learning",
-        icon: <SettingsInputComponentIcon />,
+        id: "Accounts",
+        icon: <DnsRoundedIcon />,
+        route: "accounts",
       },
     ],
   },
   {
-    id: "Quality",
+    id: "Settings",
     children: [
-      { id: "Analytics", icon: <SettingsIcon /> },
-      { id: "Performance", icon: <TimerIcon /> },
-      { id: "Test Lab", icon: <PhonelinkSetupIcon /> },
+      {
+        id: "Settings",
+        icon: <SettingsIcon />,
+        route: "settings",
+      },
+      {
+        id: "Profile",
+        icon: <TimerIcon />,
+        route: "profile",
+      },
     ],
   },
 ];
@@ -76,16 +75,16 @@ export default function LeftNavigation(props: DrawerProps) {
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
-          <ListItemText>Admin</ListItemText>
+          <ListItemText>Manager</ListItemText>
         </ListItem>
         {categories.map(({ id, children }) => (
           <Box key={id} sx={{ bgcolor: "#101F33" }}>
             <ListItem sx={{ py: 2, px: 3 }}>
               <ListItemText sx={{ color: "#fff" }}>{id}</ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, active }) => (
+            {children.map(({ id: childId, icon }) => (
               <ListItem disablePadding key={childId}>
-                <ListItemButton selected={active} sx={item}>
+                <ListItemButton selected={false} sx={item}>
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText>{childId}</ListItemText>
                 </ListItemButton>

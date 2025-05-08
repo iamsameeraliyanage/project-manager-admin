@@ -10,6 +10,7 @@ import Tabs from "@mui/material/Tabs";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
+import { useMainLayout } from "../../../../context/MainLayoutContext";
 
 interface HeaderProps {
   onDrawerToggle: () => void;
@@ -17,6 +18,7 @@ interface HeaderProps {
 
 export default function Header(props: HeaderProps) {
   const { onDrawerToggle } = props;
+  const { mainTitle } = useMainLayout();
 
   return (
     <React.Fragment>
@@ -60,7 +62,7 @@ export default function Header(props: HeaderProps) {
           <Grid container spacing={1} sx={{ alignItems: "center" }}>
             <Grid>
               <Typography color="inherit" variant="h5" component="h1">
-                Authentication
+                {mainTitle}
               </Typography>
             </Grid>
           </Grid>
