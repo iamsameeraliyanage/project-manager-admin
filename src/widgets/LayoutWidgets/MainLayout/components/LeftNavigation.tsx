@@ -61,7 +61,7 @@ const itemCategory = {
   px: 3,
 };
 
-export default function Navigator(props: DrawerProps) {
+export default function LeftNavigation(props: DrawerProps) {
   const { ...other } = props;
 
   return (
@@ -70,13 +70,13 @@ export default function Navigator(props: DrawerProps) {
         <ListItem
           sx={{ ...item, ...itemCategory, fontSize: 22, color: "#fff" }}
         >
-          Paperbase
+          CompanyLogo
         </ListItem>
         <ListItem sx={{ ...item, ...itemCategory }}>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
-          <ListItemText>Project Overview</ListItemText>
+          <ListItemText>Admin</ListItemText>
         </ListItem>
         {categories.map(({ id, children }) => (
           <Box key={id} sx={{ bgcolor: "#101F33" }}>
