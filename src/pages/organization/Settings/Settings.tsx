@@ -12,6 +12,10 @@ const Settings = () => {
       { label: "Teams", route: "/settings/teams" },
       { label: "Permissions", route: "/settings/permissions" },
     ]);
+    return () => {
+      setMainTitle("");
+      setMainHeaderTabs([]);
+    };
   }, []);
 
   return (
