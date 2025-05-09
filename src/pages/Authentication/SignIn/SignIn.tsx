@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
 import { styled } from "@mui/material";
+import { apiService } from "../../../services/apiService";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -57,12 +58,16 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignIn() {
-  const { login } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const login = async (email: string, password: string) => {
+    const receivedToken = await apiService.login(email, password);
+    localStorage.setItem("token", receivedToken);
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();

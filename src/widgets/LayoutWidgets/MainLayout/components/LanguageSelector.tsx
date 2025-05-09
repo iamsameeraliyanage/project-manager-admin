@@ -6,7 +6,7 @@ import {
   IconButton,
   ListItemIcon,
   ListItemText,
-} from "@mui/material"; 
+} from "@mui/material";
 
 const LANGUAGES = [
   { code: "en", label: "English", icon: "/locales/EN.png" },
@@ -27,7 +27,8 @@ export default function LanguageSwitcher() {
     i18n.changeLanguage(code);
     handleClose();
   };
-  const currentFlag = LANGUAGES.find(({ code }) => code === i18n.language);
+  const currentLang =
+    LANGUAGES.find(({ code }) => code === i18n.language) || LANGUAGES[0];
 
   return (
     <>
@@ -36,7 +37,7 @@ export default function LanguageSwitcher() {
         onClick={handleOpen}
         aria-label="change language"
       >
-        <img src={currentFlag?.icon} alt={currentFlag?.label} width={20} />
+        <img src={currentLang?.icon} alt={currentLang?.label} width={20} />
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         {LANGUAGES.map(({ code, label, icon }) => (

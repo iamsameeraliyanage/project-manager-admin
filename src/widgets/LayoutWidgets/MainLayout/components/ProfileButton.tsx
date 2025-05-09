@@ -13,17 +13,21 @@ import {
 
 import PeopleIcon from "@mui/icons-material/People";
 import TimerIcon from "@mui/icons-material/Timer";
-import { Link } from "react-router-dom";
-import { useAuth } from "../../../../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
 
 const ProfileButton = () => {
-  const { logout } = useAuth();
   const [anchorEl2, setAnchorEl2] = useState(null);
+  const navigate = useNavigate();
+
   const handleClick2 = (event: any) => {
     setAnchorEl2(event.currentTarget);
   };
   const handleClose2 = () => {
     setAnchorEl2(null);
+  };
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/signin");
   };
 
   return (
