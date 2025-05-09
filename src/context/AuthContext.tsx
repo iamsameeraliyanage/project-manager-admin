@@ -1,21 +1,35 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
+import { apiService } from "../services/apiService";
 
 type AuthContextType = {
   isAuthenticated: boolean;
-  login: () => void;
+  token: string | null;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => void;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isAuthenticated, setAuth] = useState(true);
+  const [token, setToken] = useState<string | null>(
+    localStorage.getItem("token")
+  );
 
-  const login = () => setAuth(true);
-  const logout = () => setAuth(false);
+  const login = async (email: string, password: string) => {
+    const receivedToken = await apiService.login(email, password);
+    localStorage.setItem("token", receivedToken);
+    setToken(receivedToken);
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+  };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated: !!token, token, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -7,17 +7,17 @@ import {
   Button,
   IconButton,
   MenuItem,
-  ListItemIcon,
   ListItemText,
   Typography,
 } from "@mui/material";
 
 import PeopleIcon from "@mui/icons-material/People";
-import DnsRoundedIcon from "@mui/icons-material/DnsRounded";
 import TimerIcon from "@mui/icons-material/Timer";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../../context/AuthContext";
 
 const ProfileButton = () => {
+  const { logout } = useAuth();
   const [anchorEl2, setAnchorEl2] = useState(null);
   const handleClick2 = (event: any) => {
     setAnchorEl2(event.currentTarget);
@@ -79,13 +79,7 @@ const ProfileButton = () => {
           </Box>
         </MenuItem>
         <Box mt={1} py={1} px={2}>
-          <Button
-            to="/signin"
-            variant="outlined"
-            color="primary"
-            component={Link}
-            fullWidth
-          >
+          <Button variant="outlined" color="primary" fullWidth onClick={logout}>
             Logout
           </Button>
         </Box>
