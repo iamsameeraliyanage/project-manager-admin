@@ -16,14 +16,14 @@ import TimerIcon from "@mui/icons-material/Timer";
 import { Link, useNavigate } from "react-router-dom";
 
 const ProfileButton = () => {
-  const [anchorEl2, setAnchorEl2] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
 
-  const handleClick2 = (event: any) => {
-    setAnchorEl2(event.currentTarget);
+  const handleClick = (event: any) => {
+    setAnchorEl(event.currentTarget);
   };
-  const handleClose2 = () => {
-    setAnchorEl2(null);
+  const handleClose = () => {
+    setAnchorEl(null);
   };
   const logout = () => {
     localStorage.removeItem("token");
@@ -39,21 +39,21 @@ const ProfileButton = () => {
         aria-controls="msgs-menu"
         aria-haspopup="true"
         sx={{
-          ...(typeof anchorEl2 === "object" && {
+          ...(typeof anchorEl === "object" && {
             color: "primary.main",
           }),
         }}
-        onClick={handleClick2}
+        onClick={handleClick}
       >
         <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
       </IconButton>
 
       <Menu
         id="msgs-menu"
-        anchorEl={anchorEl2}
+        anchorEl={anchorEl}
         keepMounted
-        open={Boolean(anchorEl2)}
-        onClose={handleClose2}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         sx={{
