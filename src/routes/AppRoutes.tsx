@@ -1,14 +1,14 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import SignIn from "../pages/authentication/sign-in/SignIn";
+import SignIn from "../pages/Authentication/SignIn/SignIn";
 
-import Settings from "../pages/organization/Settings/Settings";
-import Accounts from "../pages/organization/Accounts";
-import Profile from "../pages/organization/Profile";
-import Organization from "../pages/organization/Organization";
+import Settings from "../pages/Settings/Settings";
+import Accounts from "../pages/Accounts/Accounts";
+import Profile from "../pages/Profile/Profile";
+import Organization from "../pages/Organization/Organization";
 import AuthnticatedRoute from "./AuthnticatedRoute";
-import SettingsPermissions from "../pages/organization/Settings/SettingsPermissions";
-import SettingsTeams from "../pages/organization/Settings/SettingsTeams";
-import SettingsUsers from "../pages/organization/Settings/SettingsUsers";
+import SettingsPermissions from "../pages/Settings/SettingsPermissions";
+import SettingsTeams from "../pages/Settings/SettingsTeams";
+import SettingsUsers from "../pages/Settings/SettingsUsers";
 
 export const AppRoutes = () => (
   <Routes>
