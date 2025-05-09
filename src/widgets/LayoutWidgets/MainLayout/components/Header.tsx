@@ -1,6 +1,5 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import Grid from "@mui/material/GridLegacy";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -13,6 +12,7 @@ import { useMainLayout } from "../../../../context/MainLayoutContext";
 import ProfileButton from "./ProfileButton";
 import { NavLink, useLocation } from "react-router-dom";
 import LanguageSelector from "./LanguageSelector";
+import { Box } from "@mui/material";
 
 interface HeaderProps {
   onDrawerToggle: () => void;
@@ -32,8 +32,16 @@ export default function Header(props: HeaderProps) {
     <React.Fragment>
       <AppBar color="primary" position="sticky" elevation={0}>
         <Toolbar>
-          <Grid container spacing={1} sx={{ alignItems: "center" }}>
-            <Grid sx={{ display: { sm: "none", xs: "block" } }} item>
+          <Box
+            sx={{
+              display: "flex",
+              flexGrow: 1,
+              alignItems: "center",
+              gap: 1,
+              py: 2,
+            }}
+          >
+            <Box sx={{ display: { sm: "none", xs: "block" } }}>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
@@ -42,23 +50,27 @@ export default function Header(props: HeaderProps) {
               >
                 <MenuIcon />
               </IconButton>
-            </Grid>
-            <Grid item xs />
-            <Grid item>
+            </Box>
+
+            <Box
+              sx={{
+                ml: "auto",
+              }}
+            >
               <Tooltip title="Alerts • No alerts">
                 <IconButton color="inherit">
                   <NotificationsIcon />
                 </IconButton>
               </Tooltip>
-            </Grid>
-            <Grid item>
+            </Box>
+            <Box>
               <LanguageSelector />
-            </Grid>
+            </Box>
 
-            <Grid item>
+            <Box>
               <ProfileButton />
-            </Grid>
-          </Grid>
+            </Box>
+          </Box>
         </Toolbar>
       </AppBar>
 
