@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
@@ -73,6 +73,10 @@ export default function SignIn() {
       setError("Invalid email or password");
     }
   };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) navigate("/");
+  }, []);
 
   return (
     <Stack>
