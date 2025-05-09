@@ -6,7 +6,7 @@ import {
   IconButton,
   ListItemIcon,
   ListItemText,
-} from "@mui/material";
+} from "@mui/material"; 
 
 const LANGUAGES = [
   { code: "en", label: "English", icon: "/locales/EN.png" },
