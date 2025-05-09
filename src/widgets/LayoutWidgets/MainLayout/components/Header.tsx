@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import { useMainLayout } from "../../../../context/MainLayoutContext";
 import ProfileButton from "./ProfileButton";
 import { NavLink, useLocation } from "react-router-dom";
+import LanguageSelector from "./LanguageSelector";
 
 interface HeaderProps {
   onDrawerToggle: () => void;
@@ -50,6 +51,10 @@ export default function Header(props: HeaderProps) {
                 </IconButton>
               </Tooltip>
             </Grid>
+            <Grid item>
+              <LanguageSelector />
+            </Grid>
+
             <Grid item>
               <ProfileButton />
             </Grid>
