@@ -30,7 +30,7 @@ export default function Header(props: HeaderProps) {
 
   return (
     <React.Fragment>
-      <AppBar color="primary" position="sticky" elevation={0}>
+      <AppBar color="secondary" position="sticky" elevation={0}>
         <Toolbar>
           <Box
             sx={{
@@ -76,7 +76,7 @@ export default function Header(props: HeaderProps) {
 
       <AppBar
         component="div"
-        color="primary"
+        color="secondary"
         position="static"
         elevation={0}
         sx={{ zIndex: 0 }}

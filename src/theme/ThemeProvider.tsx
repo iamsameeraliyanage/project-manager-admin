@@ -5,6 +5,19 @@ import {
 } from "@mui/material/styles";
 
 let theme = createTheme({
+  palette: {
+    mode: "light",
+    primary: {
+      main: "#185b6b",
+      light: "#255c6d",
+      dark: "#0f3741",
+    },
+    secondary: {
+      main: "#009cc8",
+      light: "#03addc",
+      dark: "#007498",
+    },
+  },
   typography: {
     h5: {
       fontWeight: 500,
@@ -104,7 +117,7 @@ theme = {
       styleOverrides: {
         root: {
           "&.Mui-selected": {
-            // color: "#4fc3f7",
+            color: theme.palette.secondary.main,
           },
         },
       },
