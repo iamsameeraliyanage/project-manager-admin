@@ -95,6 +95,7 @@ export default function Header(props: HeaderProps) {
 
       {mainHeaderTabs.length > 0 && (
         <AppBar
+          color="secondary"
           component="div"
           position="static"
           elevation={0}
