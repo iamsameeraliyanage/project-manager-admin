@@ -6,12 +6,13 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import HomeIcon from "@mui/icons-material/Home";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import PeopleIcon from "@mui/icons-material/People";
 import DnsRoundedIcon from "@mui/icons-material/DnsRounded";
 import TimerIcon from "@mui/icons-material/Timer";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { NavLink, useLocation } from "react-router-dom";
+import { useAuth } from "../../../../context/AuthContext";
 
 const categories = [
   {
@@ -64,6 +65,7 @@ const itemCategory = {
 export default function LeftNavigation(props: DrawerProps) {
   const { ...other } = props;
   const location = useLocation();
+  const { userRole } = useAuth();
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
@@ -74,9 +76,15 @@ export default function LeftNavigation(props: DrawerProps) {
         </ListItem>
         <ListItem sx={{ ...item, ...itemCategory }}>
           <ListItemIcon>
-            <HomeIcon />
+            <AdminPanelSettingsIcon />
           </ListItemIcon>
-          <ListItemText>Manager</ListItemText>
+          <ListItemText
+            sx={{
+              textTransform: "capitalize",
+            }}
+          >
+            {userRole}
+          </ListItemText>
         </ListItem>
         {categories.map(({ id, children }) => (
           <Box key={id} sx={{ bgcolor: "#101F33" }}>

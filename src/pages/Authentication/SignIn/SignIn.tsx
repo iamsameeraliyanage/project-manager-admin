@@ -12,7 +12,9 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
-import { styled } from "@mui/material";
+import { CircularProgress, styled } from "@mui/material";
+import { loginMutationFn } from "../../../services/api";
+import { useMutation } from "@tanstack/react-query";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -57,22 +59,42 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignIn() {
-  const { login } = useAuth();
+  const { setToken, setUserRole } = useAuth();
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const { mutate, isPending } = useMutation({
+    mutationFn: loginMutationFn,
+  });
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      await login(email, password);
-      navigate("/");
-    } catch (err) {
-      setError("Invalid email or password");
-    }
+    const signInData = {
+      email,
+      password,
+    };
+
+    mutate(signInData, {
+      onSuccess: (data) => {
+        const receivedToken = data.token;
+        const recievedUserRole = data.role;
+
+        localStorage.setItem("token", receivedToken);
+        setToken(receivedToken);
+        setUserRole(recievedUserRole);
+        navigate("/");
+      },
+      onError: (error) => {
+        console.error(error.message);
+        setError("Invalid email or password");
+      },
+    });
   };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) navigate("/");
@@ -123,7 +145,13 @@ export default function SignIn() {
 
             {error && <Typography color="error">{error}</Typography>}
 
-            <Button type="submit" fullWidth variant="contained">
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              disabled={isPending}
+              startIcon={isPending && <CircularProgress size={16} />}
+            >
               Sign in
             </Button>
           </Box>

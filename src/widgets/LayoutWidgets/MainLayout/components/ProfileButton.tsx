@@ -17,7 +17,13 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../../../context/AuthContext";
 
 const ProfileButton = () => {
-  const { logout } = useAuth();
+  const { setToken } = useAuth();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+  };
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event: any) => {

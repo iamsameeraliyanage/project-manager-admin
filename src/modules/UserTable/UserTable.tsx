@@ -12,17 +12,17 @@ import {
   Paper,
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { apiService } from "../../services/apiService";
-import type { User } from "../../types/user";
+import type { JsonPlaceHolderUser } from "../../types/user";
+import { getJsonPlaceholderUsersQueryFn } from "../../services/api";
 
 const UserTable = () => {
   const {
     data: users,
     isLoading,
     error,
-  } = useQuery<User[]>({
+  } = useQuery<JsonPlaceHolderUser[]>({
     queryKey: ["users"],
-    queryFn: apiService.getUsers,
+    queryFn: getJsonPlaceholderUsersQueryFn,
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,
   });

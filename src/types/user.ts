@@ -1,4 +1,5 @@
-export interface User {
+export interface JsonPlaceHolderUser {
+  //TODO remove this
   id: number;
   name: string;
   username: string;
@@ -20,4 +21,10 @@ export interface User {
     catchPhrase: string;
     bs: string;
   };
+}
+export interface User {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
 }
