@@ -121,7 +121,7 @@ export default function SignIn() {
               }}
             >
               <img
-                src="/yellowcamper-logo.svg"
+                src="/logo.svg"
                 alt="admin-dashboard-starter"
                 className="object-contain img-fluid"
               />
