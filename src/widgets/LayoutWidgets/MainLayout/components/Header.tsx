@@ -16,7 +16,6 @@ import {
 import LanguageSelector from "./LanguageSelector";
 import { Box, IconButton, Link } from "@mui/material";
 import { IoMdArrowBack } from "react-icons/io";
-import EnvironmentIndicator from "../../../../components/EnvironmentIndicator/EnvironmentIndicator";
 
 export default function Header() {
   const { mainTitle, mainHeaderTabs, backLink } = useMainLayout();
@@ -91,7 +90,6 @@ export default function Header() {
               <Typography color="inherit" variant="h2" component="h1">
                 {mainTitle}
               </Typography>
-              <EnvironmentIndicator />
             </Box>
 
             <Box

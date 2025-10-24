@@ -6,7 +6,6 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import PWABadge from "./components/PWABadge/PWABadge";
 
 const queryClient = new QueryClient();
 
@@ -16,7 +15,6 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
           <AppRoutes />
-          <PWABadge />
         </ThemeProvider>
       </QueryClientProvider>
     </BrowserRouter>
