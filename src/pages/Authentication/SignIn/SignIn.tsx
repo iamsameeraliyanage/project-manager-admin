@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -21,7 +20,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
   flexDirection: "column",
   alignSelf: "center",
   width: "100%",
-  padding: theme.spacing(6, 4),
+  padding: theme.spacing(12, 8),
   gap: theme.spacing(2),
   margin: "auto",
   [theme.breakpoints.up("sm")]: {
@@ -42,25 +41,9 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
     padding: theme.spacing(4),
   },
-  "&::before": {
-    content: '""',
-    display: "block",
-    position: "absolute",
-    zIndex: -1,
-    inset: 0,
-    backgroundImage:
-      "radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))",
-    backgroundRepeat: "no-repeat",
-    ...theme.applyStyles("dark", {
-      backgroundImage:
-        "radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))",
-    }),
-  },
 }));
 
 export default function SignIn() {
-  const { setToken, setUserRole } = useAuth();
-
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -81,12 +64,15 @@ export default function SignIn() {
     mutate(signInData, {
       onSuccess: (data) => {
         const receivedToken = data.token;
-        const recievedUserRole = data.role;
+        const userRole = data.role;
 
         localStorage.setItem("token", receivedToken);
-        setToken(receivedToken);
-        setUserRole(recievedUserRole);
-        navigate("/");
+        if (userRole !== "factory") {
+          setError("User role not allowed");
+        } else {
+          setError("");
+          navigate("/");
+        }
       },
       onError: (error) => {
         console.error(error.message);
@@ -104,18 +90,70 @@ export default function SignIn() {
     <Stack>
       <CssBaseline enableColorScheme />
       <SignInContainer direction="column" justifyContent="space-between">
-        <Card variant="outlined">
-          <Typography component="h1" variant="h4">
-            Sign in
-          </Typography>
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `url('./banners/login-banner.jpg')`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.75,
+          }}
+        />
+        <Card
+          variant="outlined"
+          sx={{
+            position: "relative",
+            zIndex: 1,
+          }}
+        >
+          <Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                maxWidth: 280,
+                mx: "auto",
+              }}
+            >
+              <img
+                src="/logo.svg"
+                alt="admin-dashboard-starter"
+                className="object-contain img-fluid"
+              />
+            </Box>
+            <Typography variant="h1" align="center">
+              admin-dashboard-starter
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                mb: 1,
+                textAlign: "center",
+              }}
+            >
+              Sign in to continue
+            </Typography>
+          </Box>
 
           <Box
             component="form"
             onSubmit={handleLogin}
-            sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+            sx={{ display: "flex", flexDirection: "column", gap: 3 }}
           >
             <FormControl>
-              <FormLabel htmlFor="email">Email</FormLabel>
+              <FormLabel
+                htmlFor="email"
+                sx={{
+                  mb: 1,
+                }}
+              >
+                Email
+              </FormLabel>
               <TextField
                 id="email"
                 type="email"
@@ -127,7 +165,14 @@ export default function SignIn() {
             </FormControl>
 
             <FormControl>
-              <FormLabel htmlFor="password">Password</FormLabel>
+              <FormLabel
+                htmlFor="password"
+                sx={{
+                  mb: 1,
+                }}
+              >
+                Password
+              </FormLabel>
               <TextField
                 id="password"
                 type="password"

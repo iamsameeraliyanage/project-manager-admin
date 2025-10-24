@@ -11,6 +11,7 @@ import {
 const LANGUAGES = [
   { code: "en", label: "English", icon: "/locales/EN.png" },
   { code: "de", label: "Deutsch", icon: "/locales/DE.png" },
+  { code: "pl", label: "Polski", icon: "/locales/PL.png" },
 ];
 
 export default function LanguageSwitcher() {
@@ -28,7 +29,7 @@ export default function LanguageSwitcher() {
     handleClose();
   };
   const currentLang =
-    LANGUAGES.find(({ code }) => code === i18n.language) || LANGUAGES[0];
+    LANGUAGES.find(({ code }) => code === i18n.language) || LANGUAGES[2];
 
   return (
     <>

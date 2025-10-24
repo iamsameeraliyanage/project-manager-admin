@@ -1,36 +1,43 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import Toolbar from "@mui/material/Toolbar";
-import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import { useMainLayout } from "../../../../context/MainLayoutContext";
+import { useMainLayout } from "../../../../context/main-layout-provider";
 import ProfileButton from "./ProfileButton";
-import { NavLink, useLocation } from "react-router-dom";
+import {
+  Link as RouterLink,
+  NavLink,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+
 import LanguageSelector from "./LanguageSelector";
-import { Box } from "@mui/material";
+import { Box, IconButton, Link } from "@mui/material";
+import { IoMdArrowBack } from "react-icons/io";
+import EnvironmentIndicator from "../../../../components/EnvironmentIndicator/EnvironmentIndicator";
 
-interface HeaderProps {
-  onDrawerToggle: () => void;
-}
+export default function Header() {
+  const { mainTitle, mainHeaderTabs, backLink } = useMainLayout();
 
-export default function Header(props: HeaderProps) {
-  const { onDrawerToggle } = props;
-  const { mainTitle, mainHeaderTabs } = useMainLayout();
-
+  const navigate = useNavigate();
   const location = useLocation();
 
   const currentTabIndex = mainHeaderTabs.findIndex(
     (tab) => location.pathname === tab.route
   );
 
+  const handleBack = () => {
+    if (backLink) {
+      navigate(backLink);
+      return;
+    }
+    navigate(-1);
+  };
   return (
     <React.Fragment>
-      <AppBar color="secondary" position="sticky" elevation={0}>
+      <AppBar color="primary" position="sticky" elevation={0}>
         <Toolbar>
           <Box
             sx={{
@@ -38,18 +45,53 @@ export default function Header(props: HeaderProps) {
               flexGrow: 1,
               alignItems: "center",
               gap: 1,
-              py: 2,
+              py: 2.5,
             }}
           >
-            <Box sx={{ display: { sm: "none", xs: "block" } }}>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                onClick={onDrawerToggle}
-                edge="start"
+            <Box sx={{ display: { sm: "none" } }}>
+              <Box
+                sx={{
+                  display: { xs: "flex", sm: "none" },
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                  height: "3.75rem",
+                  padding: 2,
+                  maxWidth: "4rem",
+                }}
               >
-                <MenuIcon />
-              </IconButton>
+                <Link component={RouterLink} to="/">
+                  <img src="/logo-icon.svg" alt="logo" className="img-fluid" />
+                </Link>
+              </Box>
+            </Box>
+            {location.pathname !== "/" && (
+              <Box
+                sx={{
+                  mr: 1,
+                  borderRightWidth: 1,
+                  borderRightColor: `rgba(255, 255, 255, 0.12)`,
+                  borderRightStyle: "solid",
+                }}
+              >
+                <IconButton
+                  color="inherit"
+                  onClick={handleBack}
+                  sx={{
+                    px: 2,
+                    borderRadius: 1,
+                  }}
+                >
+                  <IoMdArrowBack />
+                </IconButton>
+              </Box>
+            )}
+
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              <Typography color="inherit" variant="h2" component="h1">
+                {mainTitle}
+              </Typography>
+              <EnvironmentIndicator />
             </Box>
 
             <Box
@@ -57,13 +99,6 @@ export default function Header(props: HeaderProps) {
                 ml: "auto",
               }}
             >
-              <Tooltip title="Alerts • No alerts">
-                <IconButton color="inherit">
-                  <NotificationsIcon />
-                </IconButton>
-              </Tooltip>
-            </Box>
-            <Box>
               <LanguageSelector />
             </Box>
 
@@ -74,32 +109,13 @@ export default function Header(props: HeaderProps) {
         </Toolbar>
       </AppBar>
 
-      <AppBar
-        component="div"
-        color="secondary"
-        position="static"
-        elevation={0}
-        sx={{ zIndex: 0 }}
-      >
-        <Toolbar>
-          <Typography
-            color="inherit"
-            variant="h5"
-            component="h1"
-            sx={{ pb: 2 }}
-          >
-            {mainTitle}
-          </Typography>
-        </Toolbar>
-      </AppBar>
-
       {mainHeaderTabs.length > 0 && (
         <AppBar
-          color="secondary"
           component="div"
           position="static"
           elevation={0}
           sx={{ zIndex: 0 }}
+          color="primary"
         >
           <Tabs
             value={currentTabIndex === -1 ? false : currentTabIndex}
