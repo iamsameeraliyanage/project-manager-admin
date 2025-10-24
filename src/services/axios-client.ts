@@ -21,7 +21,8 @@ API.interceptors.request.use(
 API.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    const errorStatus = error.response?.status;
+    if (errorStatus === 401 || errorStatus === 403) {
       console.warn("Unauthorized access. You may need to log in again.");
 
       localStorage.removeItem("token");

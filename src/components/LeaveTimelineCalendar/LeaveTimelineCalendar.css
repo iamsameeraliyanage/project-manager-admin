@@ -1,0 +1,107 @@
+.rct-vl.holiday {
+  background-color: #e05c236f;
+}
+
+.react-calendar-timeline {
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.react-calendar-timeline .rct-header-root {
+  background-color: #f3f4f6;
+  border-bottom: 1px solid #e7e7e7;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.react-calendar-timeline .rct-sidebar .rct-sidebar-row {
+  padding: 0 16px;
+}
+
+.react-calendar-timeline .rct-sidebar .rct-sidebar-row > div {
+  max-width: 100%;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.react-calendar-timeline .rct-sidebar {
+  height: 100%;
+  border-right: 1px solid #e7e7e7;
+}
+
+.react-calendar-timeline .rct-sidebar > div {
+  overflow: auto;
+  height: 100%;
+}
+
+.react-calendar-timeline .rct-dateHeader {
+  background-color: #ffffff;
+}
+
+.rct-dateHeader.rct-dateHeader-primary {
+  background-color: #f3f4f6;
+}
+
+.react-calendar-timeline .rct-dateHeader-primary {
+  color: #000000;
+}
+
+.react-calendar-timeline .rct-horizontal-lines .rct-hl-even,
+.react-calendar-timeline .rct-horizontal-lines .rct-hl-odd {
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.react-calendar-timeline .rct-horizontal-lines .rct-hl-odd {
+  background: #4646460b;
+}
+
+.react-calendar-timeline .rct-sidebar .rct-sidebar-row.rct-sidebar-row-odd {
+  background: #4646460b;
+}
+
+.react-calendar-timeline .rct-sidebar .rct-sidebar-row {
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.react-calendar-timeline [data-testid="default-today-line"] {
+  background-color: #009cc8 !important;
+}
+
+.react-calendar-timeline .rct-vertical-lines .rct-vl {
+  border-left: 1px solid #e7e7e7;
+}
+
+.react-calendar-timeline .rct-dateHeader {
+  border-bottom: 1px solid #e7e7e7;
+  border-left: 1px solid #e7e7e7;
+}
+
+.react-calendar-timeline .rct-calendar-header {
+  border-bottom: transparent;
+  border-left: transparent;
+  border-top: transparent;
+  border-right: transparent;
+  border-top-right-radius: 4px;
+}
+
+/* Leave-specific styles */
+.leave-item.approved {
+  background-color: #008d33 !important;
+  border-color: #008d33 !important;
+}
+
+.leave-item.pending {
+  background-color: #9ca3af !important;
+  border-color: #6b7280 !important;
+}
+
+.leave-item.half-day {
+  opacity: 0.7;
+  border-style: dashed !important;
+}
+.rct-item {
+  padding-left: 16px;
+}

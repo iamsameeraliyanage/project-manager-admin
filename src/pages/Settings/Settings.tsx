@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
-import { useMainLayout } from "../../context/MainLayoutContext";
+import { useMainLayout } from "../../context/main-layout-provider";
 
 const Settings = () => {
   const { setMainTitle, setMainHeaderTabs } = useMainLayout();

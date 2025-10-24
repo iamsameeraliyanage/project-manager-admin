@@ -1,6 +1,4 @@
-# Innofab Project Manager Admin Dashboard
-
- <img src="https://beta.innofab.ch/logos/innofab-full-logo-color.svg" alt="App Preview" width="600" />
+# admin-dashboard-starter
 
 ### Developer Guideline
 

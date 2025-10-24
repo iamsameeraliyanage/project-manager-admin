@@ -1,0 +1,55 @@
+/* Custom styles for WorkPackage Timeline Calendar */
+
+/* Ensure all event text is visible */
+.rbc-event {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.2;
+  padding: 2px 4px;
+  overflow: visible;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Holiday events should be more prominent */
+.rbc-event[style*="background-color: rgb(244, 67, 54)"] {
+  font-weight: 600;
+  border: 1px solid #d32f2f;
+}
+
+/* Off day events styling */
+.rbc-event[style*="background-color: rgb(255, 235, 59)"] {
+  color: #333 !important;
+  font-weight: 500;
+  border: 1px solid #f57f17;
+}
+
+/* Leave events styling */
+.rbc-event[style*="background-color: rgb(76, 175, 80)"] {
+  border: 1px solid #388e3c;
+}
+
+.rbc-event[style*="background-color: rgb(158, 158, 158)"] {
+  border: 1px solid #757575;
+}
+
+/* Ensure text is visible in month view */
+.rbc-month-view .rbc-event {
+  font-size: 11px;
+  padding: 1px 3px;
+}
+
+/* All-day events should be clearly visible */
+.rbc-allday-cell .rbc-event {
+  margin: 1px 0;
+  min-height: 16px;
+  display: flex;
+  align-items: center;
+}
+
+/* Month view all-day events */
+.rbc-month-view .rbc-allday-cell .rbc-event {
+  font-size: 10px;
+  padding: 1px 2px;
+  min-height: 14px;
+}

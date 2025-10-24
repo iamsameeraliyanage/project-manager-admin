@@ -4,7 +4,10 @@ import {
   ThemeProvider as MUIThemeProvider,
 } from "@mui/material/styles";
 
+export const calculatedRem = (px: number) => `${px / 16}rem`;
+
 let theme = createTheme({
+  spacing: (factor: number) => `${0.25 * factor}rem`,
   palette: {
     mode: "light",
     primary: {
@@ -19,10 +22,64 @@ let theme = createTheme({
     },
   },
   typography: {
-    h5: {
+    fontSize: 14, // base font size in px (used for calculations only)
+
+    h1: {
+      fontSize: calculatedRem(26),
+      fontWeight: 600,
+      lineHeight: calculatedRem(56),
+      letterSpacing: 0,
+    },
+    h2: {
+      fontSize: calculatedRem(24),
       fontWeight: 500,
-      fontSize: 26,
-      letterSpacing: 0.5,
+      lineHeight: calculatedRem(36),
+      letterSpacing: 0,
+    },
+    h3: {
+      fontSize: calculatedRem(22),
+      fontWeight: 500,
+      lineHeight: calculatedRem(24),
+      letterSpacing: 0,
+    },
+    h4: {
+      fontSize: calculatedRem(20),
+      fontWeight: 500,
+      lineHeight: calculatedRem(20),
+      letterSpacing: 0,
+    },
+    h5: {
+      fontSize: calculatedRem(18),
+      fontWeight: 500,
+      lineHeight: calculatedRem(20),
+      letterSpacing: 0,
+    },
+    h6: {
+      fontSize: calculatedRem(17),
+      fontWeight: 500,
+      lineHeight: calculatedRem(22),
+      letterSpacing: 0,
+    },
+    body1: {
+      fontSize: calculatedRem(16),
+      lineHeight: calculatedRem(24),
+      fontWeight: 400,
+    },
+    body2: {
+      fontSize: calculatedRem(14),
+      lineHeight: calculatedRem(20),
+      fontWeight: 400,
+    },
+    button: {
+      fontSize: calculatedRem(16),
+      lineHeight: calculatedRem(28),
+      textTransform: "none",
+      fontWeight: 400,
+    },
+    overline: {
+      fontSize: calculatedRem(11),
+      lineHeight: calculatedRem(14),
+      fontWeight: 400,
     },
   },
   shape: {
@@ -48,7 +105,7 @@ theme = {
     MuiDrawer: {
       styleOverrides: {
         paper: {
-          backgroundColor: "#081627",
+          backgroundColor: theme.palette.primary.main,
         },
       },
     },
@@ -56,6 +113,9 @@ theme = {
       styleOverrides: {
         root: {
           textTransform: "none",
+          borderRadius: 6,
+          paddingLeft: 16,
+          paddingRight: 16,
         },
         contained: {
           boxShadow: "none",
@@ -118,6 +178,13 @@ theme = {
         root: {
           "&.Mui-selected": {
             color: theme.palette.secondary.main,
+            backgroundColor: theme.palette.primary.dark,
+            "&:hover": {
+              backgroundColor: theme.palette.primary.dark,
+            },
+            "&:focus": {
+              backgroundColor: theme.palette.primary.dark,
+            },
           },
         },
       },
@@ -147,6 +214,36 @@ theme = {
         root: {
           width: 32,
           height: 32,
+        },
+      },
+    },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          padding: theme.spacing(4),
+          "&:last-child": {
+            paddingBottom: theme.spacing(5),
+          },
+        },
+      },
+    },
+    MuiCardActionArea: {
+      styleOverrides: {
+        root: {
+          padding: theme.spacing(4),
+          "&:last-child": {
+            paddingBottom: theme.spacing(5),
+          },
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        sizeSmall: {
+          height: calculatedRem(20),
+          fontSize: calculatedRem(12),
+          paddingLeft: calculatedRem(8),
+          paddingRight: calculatedRem(8),
         },
       },
     },
