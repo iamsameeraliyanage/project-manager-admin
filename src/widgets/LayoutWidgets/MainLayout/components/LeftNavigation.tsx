@@ -4,10 +4,6 @@ import Box from "@mui/material/Box";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import HomeIcon from "@mui/icons-material/Home";
-// import DnsRoundedIcon from "@mui/icons-material/DnsRounded";
-// import TimerIcon from "@mui/icons-material/Timer";
-// import SettingsIcon from "@mui/icons-material/Settings";
-import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import { Link as RouterLink, NavLink, useLocation } from "react-router-dom";
 import { Link, Stack } from "@mui/material";
@@ -20,11 +16,6 @@ export const navigationLinks = [
         id: "Organization",
         icon: <HomeIcon />,
         route: "/",
-      },
-      {
-        id: "Gallery",
-        icon: <PhotoLibraryIcon />,
-        route: "/gallery",
       },
       {
         id: "Dashboard",
